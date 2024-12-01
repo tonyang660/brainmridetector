@@ -1,6 +1,5 @@
 import os
 import numpy as np
-import imghdr
 from keras.api.preprocessing.image import load_img, img_to_array
 from keras.api.applications import VGG16
 from keras.api.models import Sequential, load_model
@@ -10,8 +9,8 @@ from sklearn.model_selection import train_test_split
 
 # Parameters
 image_size = (224, 224)
-data_dir = r'./brain_tumor_dataset'
-model_file = r'./MRI_Anomaly_Detection_Model.keras'
+data_dir = r'brain_tumor_dataset'
+model_file = r'MRI_Anomaly_Detection_Model.keras'
 epochs = 10
 batch_size = 32
 
@@ -36,10 +35,6 @@ def prepare_data(data_dir):
             # Skip hidden files like .DS_Store
             if image_file.startswith('.'):
                 continue
-
-            # Check if the file is an image
-            if not imghdr.what(img_path):
-                continue  # Skip if it's not an image
 
             # Load and preprocess the image
             img = load_img(img_path, target_size=image_size)
