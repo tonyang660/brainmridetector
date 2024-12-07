@@ -6,6 +6,7 @@ from keras.api.models import Sequential, load_model
 from keras.api.layers import Dense, Flatten
 from keras.api.utils import to_categorical
 from sklearn.model_selection import train_test_split
+import streamlit as st
 
 # Parameters
 image_size = (224, 224)
@@ -119,5 +120,3 @@ if __name__ == '__main__':
         print(f'Predicted Class: {prediction}')
     else:
         print("Provide a valid test image path.")
-
-
