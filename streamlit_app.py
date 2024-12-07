@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import numpy as np
 import tensorflow as tf
-from main import load_model, predict_image
+from brain_tumor_classifier import load_model, predict_image
 
 # Title of the app
 st.title('Brain MRI Tumor Detector 🧠')
