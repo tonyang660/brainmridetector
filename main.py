@@ -18,17 +18,13 @@ batch_size = 32
 # Prepare data
 def prepare_data(data_dir):
     images, labels = [], []
-    class_names = []  # To store the names of the subdirectories (class labels)
+    class_names = ['pituitary', 'glioma', 'meningioma', 'notumor']  # To store the names of the subdirectories (class labels)
 
     # Recursively walk through the directory
     for root, dirs, files in os.walk(data_dir):
         # Skip the root directory itself (we're only interested in subdirectories)
         if root == data_dir:
             continue
-
-        # Assign the class label based on the folder name
-        label = os.path.basename(root)
-        class_names.append(label)
 
         for image_file in files:
             img_path = os.path.join(root, image_file)
@@ -41,7 +37,8 @@ def prepare_data(data_dir):
             img = load_img(img_path, target_size=image_size)
             img = img_to_array(img) / 255.0  # Normalize the image
             images.append(img)
-            labels.append(label)
+            class_name = os.path.basename(root)  # Assuming subdirectories are named as classes
+            labels.append(class_name)
 
     # Convert lists to numpy arrays
     images = np.array(images)
